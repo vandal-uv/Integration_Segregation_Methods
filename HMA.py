@@ -87,20 +87,23 @@ def Functional_HP(FC):
 
 def Balance(FC, Clus_num, Clus_size):
     '''
-    This script uses the eigenmode-based analysis to detect the hierarchical
-    modules in FC networks.
+    This function calculates the integration and segregation components.
     
     Parameters
     ----------
     FC : numpy array.
          functional connectivity matrix.
-         
-    Returns
-    -------
     Clus_num : list.
                number of modules found at each eigenmode level.
     Clus_size: list of arrays.
-               number of nodes belonging to each module at each eigenmode level.   
+               number of nodes belonging to each module at each eigenmode level.          
+         
+    Returns
+    -------
+    Hin : float.
+          Integration component.
+    Hse : float.
+          Segregation component.   
     '''
     
 
