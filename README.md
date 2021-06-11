@@ -16,6 +16,8 @@ A "toy" example was provided with the script.
 
 Integration and Segregation quantification using hierarchical modular analysis [2,3]. Methods were adapted from: https://github.com/TobousRong/Hierarchical-module-analysis.
 
+The methods are based in eigenmodes analysis, and not require the use of any arbitrary threshold to the functional connectivity matrices.
+
 # References
 
 [1] van den Heuvel, M. P., de Lange, S. C., Zalesky, A., Seguin, C., Yeo, B. T., 
