@@ -125,9 +125,9 @@ def Balance(FC, Clus_num, Clus_size):
     for i in range(0,len(Clus_num) - 1):
         p[i] = np.sum(np.abs(np.array(Clus_size[i]) - N / Clus_num[i])) / N 
     
-    HF = s[0:89] * np.array(Clus_num) *(1-p);
+    HF = s[0:(N-1)] * np.array(Clus_num) *(1-p);
     Hin = np.sum(HF[0]) / N**2 #integration component
-    Hse = np.sum(HF[1:89]) / N**2 #segregation component
+    Hse = np.sum(HF[1:(N-1)]) / N**2 #segregation component
     
     return([Hin,Hse])
 
