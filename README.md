@@ -31,8 +31,11 @@ human brain functional diversity. Physical review letters, 123(3),
 038301.
 
 [3] Wang, R., Liu, M., Cheng, X., Wu, Y., Hildebrandt, A., & Zhou, C. (2021). 
-Segregation, integration and balance of large-scale resting brain networks 
-configure different cognitive abilities. arXiv preprint arXiv:2103.00475.
+Segregation, integration, and balance of large-scale resting brain networks 
+configure different cognitive abilities. Proceedings of the National Academy 
+of Sciences, 118(23).
+
+
 
 
 
