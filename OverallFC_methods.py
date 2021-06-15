@@ -27,21 +27,14 @@ def linear_correction(Y,X):
     
     Parameters
     ----------
-    Y1 : numpy array.
-         network's metric of group 1.
-    Y2 : numpy array.
-         network's metric of group 2.
-    X1 : numpy array.
-         overall FC of group 1.
-    X2 : numpy array.
-         overall FC of group 2.
-         
+    Y : list.
+        network's metric of groups 1, 2, 3...
+    X : list.
+        overall FC of groups 1, 2, 3...       
     Returns
     -------
-    Y1_res : numpy array.
-             network's metric of group 1 corrected for Overall FC.
-    Y2_res : numpy array.
-             network's metric of group 2 corrected for Overall FC.             
+    Y_res : list.
+             network's metric of groups 1, 2, 3... corrected for Overall FC.
              
     '''
 
