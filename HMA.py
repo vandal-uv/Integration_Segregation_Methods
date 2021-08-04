@@ -13,8 +13,13 @@ human brain functional diversity. Physical review letters, 123(3),
 038301.
 
 [2] Wang, R., Liu, M., Cheng, X., Wu, Y., Hildebrandt, A., & Zhou, C. (2021). 
-Segregation, integration and balance of large-scale resting brain networks 
-configure different cognitive abilities. arXiv preprint arXiv:2103.00475.
+Segregation, integration, and balance of large-scale resting brain networks 
+configure different cognitive abilities. Proceedings of the National 
+Academy of Sciences, 118(23).
+
+[3] Wang, R., Fan, Y., Wu, Y., & Zhou, C. (2021). Heterogeneous aging trajectories 
+within resting-state brain networks predict distinct ADHD symptoms in adults. 
+arXiv preprint arXiv:2107.13219.
 
 @author: Carlos Coronel
 """
@@ -132,5 +137,60 @@ def Balance(FC, Clus_num, Clus_size):
     return([Hin,Hse])
 
 
+
+def nodal_measures(FC, Clus_num, Clus_size):
+    
+    '''
+    This function calculates the nodal (regional) integration and segregation components.
+    
+    Parameters
+    ----------
+    FC : numpy array.
+         functional connectivity matrix.
+    Clus_num : list.
+               number of modules found at each eigenmode level.
+    Clus_size: list of arrays.
+               number of nodes belonging to each module at each eigenmode level.          
+         
+    Returns
+    -------
+    Hin_nodal : list, float.
+                Integration component of the N total number of nodes.
+    Hse_nodal : list, float.
+                Segregation component of the N total number of nodes.   
+    '''    
+    
+    N = FC.shape[0] #number of ROIs
+
+    #This method requires the complete positive connectivity in FC matrix, 
+    #that generates the global integration in the first level. 
+    FC[FC < 0] = 0
+    FC = (FC + FC.T) / 2
+
+    #singular value decomposition, where 'u' and 'v' are the eigenvectors, and 
+    #'s' the singular values (eigenvalues).    
+    u, s, v = np.linalg.svd(FC)
+    s[s<0] = 0
+    s = s ** 2 #using the squared Lambda
+    
+    p = np.zeros(N-1)
+    #modular size correction
+    for i in range(0,len(Clus_num) - 1):
+        p[i] = np.sum(np.abs(np.array(Clus_size[i]) - N / Clus_num[i])) / N 
+    
+    HF = s[0:(N-1)] * np.array(Clus_num) *(1-p)
+    
+    #Nodal (regional) integration and segregation components
+    Hin_nodal = HF[0] / N * u[:,0]**2
+    Hse_nodal = np.zeros(N)
+    for i in range(1,N-1):
+        Hse_nodal += HF[i] / N * u[:,i]**2
+    
+    return([Hin_nodal,Hse_nodal])
+    
+    
+    
+    
+    
         
         
