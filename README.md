@@ -14,7 +14,7 @@ A "toy" example was provided with the script.
 
 # HMA
 
-Integration and Segregation quantification using hierarchical modular analysis [2,3]. Methods were adapted from: https://github.com/TobousRong/Hierarchical-module-analysis.
+Integration and Segregation quantification using hierarchical modular analysis [2,3,4]. Methods were adapted from: https://github.com/TobousRong/Hierarchical-module-analysis.
 
 The methods are based in eigenmodes analysis, and not require the use of any arbitrary threshold to the functional connectivity matrices.
 
@@ -35,7 +35,9 @@ Segregation, integration, and balance of large-scale resting brain networks
 configure different cognitive abilities. Proceedings of the National Academy 
 of Sciences, 118(23).
 
-
+[4] Wang, R., Fan, Y., Wu, Y., & Zhou, C. (2021). Heterogeneous aging trajectories 
+within resting-state brain networks predict distinct ADHD symptoms in adults. 
+arXiv preprint arXiv:2107.13219
 
 
 
