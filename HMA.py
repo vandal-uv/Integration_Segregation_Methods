@@ -41,11 +41,14 @@ def Functional_HP(FC):
     -------
     Clus_num : list.
                number of modules found at each eigenmode level.
-    Clus_size: list of arrays.
-               number of nodes belonging to each module at each eigenmode level.   
+    Clus_size : list of arrays.
+               number of nodes belonging to each module at each eigenmode level. 
+    H_all : nested list of arrays
+            it contains all the assignments to each module within hierarchies.
     '''
     
     N = FC.shape[0] #number of ROIs
+    H_all= [] #all modules assignments 
     
     #This method requires the complete positive connectivity in FC matrix, 
     #that generates the global integration in the first level. 
@@ -61,9 +64,17 @@ def Functional_HP(FC):
     H1_1 = np.argwhere(u[:,1] < 0)[:,0]
     H1_2 = np.argwhere(u[:,1] >= 0)[:,0]
     
+    H1 = [] #modules of mode 1
+    H1.append(H1_1)
+    H1.append(H1_2)
+    H_all.append(H1)
+    
     Clus_num= [1] #The first level has one module and corresponds to the global integration.  
     Clus_size = [[N]] #The first level has one module with N total number of ROIs (nodes).
     for mode in range(1,N-1):
+        
+        exec('H%i = []'%(mode + 1))
+        
         x = np.argwhere(u[:,mode + 1] >= 0)[:,0]
         y = np.argwhere(u[:,mode + 1] < 0)[:,0]
         H = []
@@ -85,8 +96,11 @@ def Functional_HP(FC):
             k = k + 1
             exec('H' + '%s_%s'%((mode + 1), (j + 2)) + '=' + 'Positive_Node')
             exec('H' + '%s_%s'%((mode + 1), (j + 1)) + '=' + 'Negative_Node')
+            exec('H%i.append(H%s_%s)'%((mode + 1),(mode + 1), (j + 2)))
+            exec('H%i.append(H%s_%s)'%((mode + 1),(mode + 1), (j + 1)))  
+        exec('H_all.append(H%i)'%(mode + 1))
     
-    return([Clus_num,Clus_size])
+    return([Clus_num,Clus_size,H_all])
         
 
 
